@@ -1,0 +1,121 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Password Rotator</title>-->
+<!--    <meta charset="UTF-8"/>-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: sans-serif;-->
+<!--            padding: 2rem;-->
+<!--        }-->
+<!--        button {-->
+<!--            padding: 10px 20px;-->
+<!--            font-size: 16px;-->
+<!--        }-->
+<!--        #result {-->
+<!--            margin-top: 1rem;-->
+<!--            font-weight: bold;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h2>Snowflake Password Rotation</h2>-->
+<!--<button onclick="rotatePassword()">Rotate Password</button>-->
+<!--<div id="result"></div>-->
+<!--<script>-->
+<!--    function rotatePassword() {-->
+<!--        document.getElementById("result").innerText = "Processing...";-->
+<!--        fetch("/rotate-password", {-->
+<!--            method: "POST"-->
+<!--        })-->
+<!--        .then(response => response.json())-->
+<!--        .then(data => {-->
+<!--            document.getElementById("result").innerText = data.message;-->
+<!--        })-->
+<!--        .catch(error => {-->
+<!--            document.getElementById("result").innerText = "Error occurred!";-->
+<!--        });-->
+<!--    }-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Password Rotator</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 2rem 3rem;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h2 {
+            color: #333333;
+            margin-bottom: 1.5rem;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            margin-top: 1.5rem;
+            font-weight: 500;
+            color: #444;
+            min-height: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Snowflake Password Rotation</h2>
+    <button onclick="rotatePassword()">Rotate Password</button>
+    <div id="result"></div>
+</div>
+
+<script>
+    function rotatePassword() {
+        const resultDiv = document.getElementById("result");
+        resultDiv.innerText = "🔄 Processing...";
+        fetch("/rotate-password", {
+            method: "POST"
+        })
+        .then(response => response.json())
+        .then(data => {
+            resultDiv.innerText = data.message;
+        })
+        .catch(error => {
+            resultDiv.innerText = "Error occurred!";
+        });
+    }
+</script>
+</body>
+</html>
